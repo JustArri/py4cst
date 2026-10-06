@@ -11,6 +11,9 @@ results = Results(proj.get_file_name())
 #  -> we need to specify the number of S-parameters (= 2)
 s_mat_exporter = SMatrices(results, 2)
 
+# We can also specify tree_item_name lambda to generate custom tree item names:
+# s_mat_exporter = SMatrices(results, 2, tree_item_name=lambda a, b: f'S{a},{b}')
+
 f = s_mat_exporter.get_frequencies()
 s_mat = s_mat_exporter.get_matrices()
 
