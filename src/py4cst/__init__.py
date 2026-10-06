@@ -2,6 +2,7 @@ __ALL__ = [
     'cst',
     'results',
     'ffplot',
+    'ff_plotter',
     'ffs',
     'material_library',
     'material_utils',

@@ -12,7 +12,7 @@ except Exception as e:
 
 print(proj.get_application_name())
 print(proj.get_application_version())
-print(proj.get_project_path(Project.PATH_TYPE_PROJECT))
+print(proj.get_project_path(Project.PathType.PROJECT))
 
 # save to specified location
 proj.save('path/to/project.cst', include_results=False)
