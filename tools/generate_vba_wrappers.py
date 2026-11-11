@@ -265,8 +265,8 @@ class WrapperGen:
             return_val_desc = check_string(f"{id}.return_value_description", return_val_desc)
 
         record_history = check_bool(f"{id}.record_history", method.get("record_history", True))
-        if not record_history and (method.get("cache", False) or method.get("flush_cache") is not None):
-            raise ValueError(f"incompatible parameters: [{id}]: direct methods cannot cache or flush")
+        if not record_history and method.get("cache", False):
+            raise ValueError(f"incompatible parameters: [{id}]: direct methods cannot cache")
 
         cache = method.get("cache", False)
         cache = check_bool(f"{id}.cache", cache)
@@ -277,14 +277,6 @@ class WrapperGen:
 
         flush_cache = method.get("flush_cache")
         if flush_cache is not None:
-            if not cache:
-                raise ValueError(
-                    f"incompatible parameters: [{id}]: non-cached methods cannot flush cache"
-                )
-            if ret_dtype != "None":
-                raise ValueError(
-                    f"incompatible parameters: [{id}]: methods cannot flush cache and return values"
-                )
             flush_cache = check_string(f"{id}.flush_cache", flush_cache)
             flush_cache = check_non_empty(f"{id}.flush_cache", flush_cache)
 
@@ -481,6 +473,10 @@ class WrapperGen:
 
         vba_call_args_code = ", ".join(vba_call_args)
         vba_call_args_docs = ", ".join(vba_call_args_docs)
+        if "flush_cache" in arg_list or "cache" in arg_list:
+            raise ValueError(f"reserved Python argument: [{method_id}]: cache/flush_cache")
+        self.add_import("typing", "Optional")
+        py_args.extend(["*", f"cache: bool = {cache!r}", f"flush_cache: Optional[str] = {flush_cache!r}"])
         py_args_code = ", ".join(py_args)
         if py_ret_dtype_is_enum:
             py_ret_dtype_code = "str"
@@ -494,6 +490,17 @@ class WrapperGen:
         vba_class_name = self.obj_name if override_class is None else override_class
         docs_lines = ["VBA Call", "--------", f"{vba_class_name}.{name}({vba_call_args_docs})"]
 
+        docs_lines.extend([
+            "", "Parameters", "----------",
+            f"cache : bool, keyword-only, default {cache!r}",
+            "    Queue commands when true; otherwise execute immediately using the history policy.",
+            "    Queries and explicitly direct commands cannot be cached.",
+            f"flush_cache : Optional[str], keyword-only, default {flush_cache!r}",
+            "    None disables flushing; a string flushes the shared cache with that title.",
+            "    Cached commands flush after enqueueing; direct calls and queries flush before dispatch.",
+            "    Has no effect when history saving is disabled.",
+        ])
+
         method_desc = method.get("description")
         if method_desc is not None:
             method_desc = check_string(f"{id}.description", method_desc)
@@ -502,6 +509,12 @@ class WrapperGen:
         self_expr = "self"
         if override_class is not None:
             self_expr = f"{override_class}(self.vbap)"
+
+        if ret_dtype != "None" or not record_history:
+            body_lines.append(indent("if cache:"))
+            body_lines.append(indent(indent('raise ValueError("This method cannot be cached")')))
+        body_lines.append(indent("if not cache and flush_cache is not None:"))
+        body_lines.append(indent(indent("self.flush_cache(flush_cache)")))
 
         if ret_dtype == "Tuple":
             assert isinstance(ret_tuple_dtypes, dict)
@@ -562,7 +575,15 @@ class WrapperGen:
             else:
                 hl_method = "cache_method" if cache else ("record_method" if record_history else "invoke_method")
 
-            if ret_mapping is not None:
+            if ret_dtype == "None":
+                if record_history:
+                    body_lines.append(indent("if cache:"))
+                    body_lines.append(indent(indent(f"{self_expr}.cache_method({vba_call_args_code})")))
+                    body_lines.append(indent("else:"))
+                    body_lines.append(indent(indent(f"{self_expr}.record_method({vba_call_args_code})")))
+                else:
+                    body_lines.append(indent(f"{self_expr}.invoke_method({vba_call_args_code})"))
+            elif ret_mapping is not None:
                 body_lines.append(indent(f"__retval__ = {self_expr}.{hl_method}({vba_call_args_code})"))
                 body_lines.append(indent(f"return {ret_mapping}"))
             elif ret_dtype_is_enum:
@@ -574,8 +595,9 @@ class WrapperGen:
                     indent(f"{ret_code}{self_expr}.{hl_method}({vba_call_args_code})")
                 )
 
-            if flush_cache is not None:
-                body_lines.append(indent(f"{self_expr}.flush_cache('{flush_cache}')"))
+            if ret_dtype == "None" and record_history:
+                body_lines.append(indent("if cache and flush_cache is not None:"))
+                body_lines.append(indent(indent("self.flush_cache(flush_cache)")))
 
         if len(docs_lines) > 0:
             docs_lines = ['"""', *docs_lines, '"""']
