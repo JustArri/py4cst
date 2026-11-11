@@ -83,10 +83,12 @@ args = [
 
 [[methods]]
 name = 'CalculateZandYMatrices'
+record_history = false
 py_name = 'calculate_zy_matrices'
 
 [[methods]]
 name = 'CalculateVSWR'
+record_history = false
 py_name = 'calculate_vswr'
 
 [[methods]]
@@ -163,6 +165,7 @@ return_type = 'int'
 
 [[methods]]
 name = 'Start'
+record_history = false
 
 [[methods]]
 name = 'AutoNormImpedance'
@@ -781,6 +784,7 @@ args = [
 
 [[methods]]
 name = 'StartArFilter'
+record_history = false
 
 [[methods]]
 name = 'SetTimeWindow'
@@ -1006,10 +1010,12 @@ args = [
 
 [[methods]]
 name = 'AKSReset'
+record_history = false
 py_name = 'reset_aks'
 
 [[methods]]
 name = 'AKSStart'
+record_history = false
 py_name = 'start_aks'
 
 [[methods]]

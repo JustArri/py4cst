@@ -1,4 +1,5 @@
 object = 'Solid'
+save_history = true
 
 [[enums]]
 name = 'Key'
@@ -10,10 +11,14 @@ values = ['PBA', 'Staircase']
 
 [[methods]]
 name = 'Delete'
+cache = true
+flush_cache = 'Solid: Delete'
 args = [{ name = 'solid_name', type = 'str' }]
 
 [[methods]]
 name = 'Rename'
+cache = true
+flush_cache = 'Solid: Rename'
 args = [
     { name = 'old_name', type = 'str' },
     { name = 'new_name', type = 'str' },
@@ -21,6 +26,8 @@ args = [
 
 [[methods]]
 name = 'ChangeComponent'
+cache = true
+flush_cache = 'Solid: ChangeComponent'
 args = [
     { name = 'solid_name', type = 'str' },
     { name = 'component_name', type = 'str' },
@@ -28,6 +35,8 @@ args = [
 
 [[methods]]
 name = 'ChangeMaterial'
+cache = true
+flush_cache = 'Solid: ChangeMaterial'
 args = [
     { name = 'solid_name', type = 'str' },
     { name = 'material_name', type = 'str' },
@@ -35,10 +44,12 @@ args = [
 
 [[methods]]
 name = 'SetUseIndividualColor'
+record_history = false
 args = [{ name = 'flag', type = 'bool', default = true }]
 
 [[methods]]
 name = 'ChangeIndividualColor'
+record_history = false
 args = [
     { name = 'solid_name', type = 'str' },
     { name = 'rgb', type = 'float', dimension = 3 },
@@ -46,11 +57,14 @@ args = [
 
 [[methods]]
 name = 'FastModelUpdate'
+record_history = false
 py_name = 'set_fast_model_update'
 args = [{ name = 'flag', type = 'bool', default = true }]
 
 [[methods]]
 name = 'Add'
+cache = true
+flush_cache = 'Solid: Add'
 py_name = 'perform_add_operation'
 args = [
     { name = 'solid1_name', type = 'str' },
@@ -59,6 +73,8 @@ args = [
 
 [[methods]]
 name = 'Insert'
+cache = true
+flush_cache = 'Solid: Insert'
 py_name = 'perform_insert_operation'
 args = [
     { name = 'solid1_name', type = 'str' },
@@ -70,6 +86,8 @@ Insert solid2 into solid1.
 
 [[methods]]
 name = 'Intersect'
+cache = true
+flush_cache = 'Solid: Intersect'
 py_name = 'perform_intersect_operation'
 args = [
     { name = 'solid1_name', type = 'str' },
@@ -78,6 +96,8 @@ args = [
 
 [[methods]]
 name = 'Subtract'
+cache = true
+flush_cache = 'Solid: Subtract'
 py_name = 'perform_subtract_operation'
 args = [
     { name = 'solid1_name', type = 'str' },
@@ -89,28 +109,35 @@ Subtract solid2 from solid1.
 
 [[methods]]
 name = 'MergeMaterialsOfComponent'
+cache = true
+flush_cache = 'Solid: MergeMaterialsOfComponent'
 args = [{ name = 'component_or_solid_name', type = 'str' }]
 
 [[methods]]
 name = 'ShapeVisualizationAccuracy2'
+record_history = false
 py_name = 'set_shape_visualization_accuracy2'
 args = [{ name = 'acc', type = 'int' }]
 
 [[methods]]
 name = 'ShapeVisualizationOffset'
+record_history = false
 py_name = 'set_shape_visualization_offset'
 args = [{ name = 'offset', type = 'int' }]
 
 [[methods]]
 name = 'AttachActiveWCS'
+record_history = false
 args = [{ name = 'solid_name', type = 'str' }]
 
 [[methods]]
 name = 'BlendEdge'
+record_history = false
 args = [{ name = 'radius', type = 'float' }]
 
 [[methods]]
 name = 'ChamferEdge'
+record_history = false
 py_name = 'chamfer_edge1_deg'
 args = [
     { name = 'depth', type = 'float' },
@@ -121,6 +148,7 @@ vba_call_args = ['depth', 'angle_deg', false, 'face_id']
 
 [[methods]]
 name = 'ChamferEdge'
+record_history = false
 py_name = 'chamfer_edge2_deg'
 args = [
     { name = 'depth', type = 'float' },
@@ -131,6 +159,7 @@ vba_call_args = ['depth', 'angle_deg', true, 'face_id']
 
 [[methods]]
 name = 'SliceShape'
+record_history = false
 args = [
     { name = 'solid_name', type = 'str' },
     { name = 'component_name', type = 'str' },
@@ -138,6 +167,8 @@ args = [
 
 [[methods]]
 name = 'SplitShape'
+cache = true
+flush_cache = 'Solid: SplitShape'
 args = [
     { name = 'solid_name', type = 'str' },
     { name = 'component_name', type = 'str' },
@@ -145,6 +176,7 @@ args = [
 
 [[methods]]
 name = 'ThickenSheetAdvanced'
+record_history = false
 args = [
     { name = 'solid_name', type = 'str' },
     { name = 'key', type = 'Key' },
@@ -154,6 +186,7 @@ args = [
 
 [[methods]]
 name = 'ShellAdvanced'
+record_history = false
 args = [
     { name = 'solid_name', type = 'str' },
     { name = 'key', type = 'Key' },
@@ -163,6 +196,7 @@ args = [
 
 [[methods]]
 name = 'FillupSpaceAdvanced'
+record_history = false
 args = [
     { name = 'solid_name', type = 'str' },
     { name = 'component_name', type = 'str' },
@@ -171,26 +205,32 @@ args = [
 
 [[methods]]
 name = 'MoveSelectedFace'
+record_history = false
 args = [{ name = 'delta', type = 'float', dimension = 3 }]
 
 [[methods]]
 name = 'MoveSelectedPlanarFace'
+record_history = false
 args = [{ name = 'offset', type = 'float' }]
 
 [[methods]]
 name = 'OffsetSelectedFaces'
+record_history = false
 args = [{ name = 'offset', type = 'float' }]
 
 [[methods]]
 name = 'RemoveSelectedFaces'
+record_history = false
 
 [[methods]]
 name = 'SelectedFaceRadius'
+record_history = false
 py_name = 'set_selected_face_radius'
 args = [{ name = 'radius', type = 'float' }]
 
 [[methods]]
 name = 'SetMeshStepWidth'
+record_history = false
 args = [
     { name = 'solid_name', type = 'str' },
     { name = 'delta', type = 'float', dimension = 3 },
@@ -198,6 +238,7 @@ args = [
 
 [[methods]]
 name = 'SetMeshExtendwidth'
+record_history = false
 py_name = 'set_mesh_extend_width'
 args = [
     { name = 'solid_name', type = 'str' },
@@ -206,6 +247,7 @@ args = [
 
 [[methods]]
 name = 'SetAutomeshFixpoints'
+record_history = false
 args = [
     { name = 'solid_name', type = 'str' },
     { name = 'flag', type = 'bool', default = true },
@@ -213,6 +255,7 @@ args = [
 
 [[methods]]
 name = 'SetMaterialBasedRefinement'
+record_history = false
 args = [
     { name = 'solid_name', type = 'str' },
     { name = 'flag', type = 'bool', default = true },
@@ -220,6 +263,7 @@ args = [
 
 [[methods]]
 name = 'SetMeshProperties'
+record_history = false
 args = [
     { name = 'solid_name', type = 'str' },
     { name = 'approx', type = 'MeshApproximation' },
@@ -228,6 +272,7 @@ args = [
 
 [[methods]]
 name = 'SetUseForSimulation'
+record_history = false
 args = [
     { name = 'solid_name', type = 'str' },
     { name = 'flag', type = 'bool', default = true },
@@ -235,6 +280,7 @@ args = [
 
 [[methods]]
 name = 'SetUseThinSheetMeshForShape'
+record_history = false
 args = [
     { name = 'solid_name', type = 'str' },
     { name = 'flag', type = 'bool', default = true },
@@ -242,6 +288,7 @@ args = [
 
 [[methods]]
 name = 'SetMeshRefinement'
+record_history = false
 args = [
     { name = 'solid_name', type = 'str' },
     { name = 'edge_refinement', type = 'bool' },

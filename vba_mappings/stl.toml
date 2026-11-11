@@ -58,3 +58,4 @@ name = 'Read'
 
 [[methods]]
 name = 'Write'
+record_history = false

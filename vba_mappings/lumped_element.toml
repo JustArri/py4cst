@@ -277,6 +277,7 @@ args = [
 
 [[methods]]
 name = 'StartLumpedElementNameIteration'
+record_history = false
 py_name = 'start_name_iteration'
 
 [[methods]]
@@ -303,6 +304,7 @@ args = [
 
 [[methods]]
 name = 'GetNextLumpedElementName'
+record_history = false
 py_name = 'get_next_name'
 
 [[methods]]

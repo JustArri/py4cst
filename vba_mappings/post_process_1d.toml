@@ -1,4 +1,6 @@
 object = 'PostProcess1D'
+# Result processing is an immediate operation, not model construction.
+save_history = false
 
 [[enums]]
 name = 'ApplyTarget'

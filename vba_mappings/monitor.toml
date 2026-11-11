@@ -50,6 +50,7 @@ values = ['Frequencies', 'Steps', 'Linear', 'Logarithmic']
 
 [[methods]]
 name = 'Reset'
+cache = true
 
 [[methods]]
 name = 'Name'
@@ -323,6 +324,7 @@ args = [{ name = 'factor_xyz', type = 'float', dimension = 3 }]
 
 [[methods]]
 name = 'ChangeSubVolumeSampling'
+record_history = false
 py_name = 'change_subvolume_sampling'
 args = [
     { name = 'monitor_name', type = 'str' },
@@ -331,6 +333,7 @@ args = [
 
 [[methods]]
 name = 'ChangeSubVolumeSamplingToHistory'
+record_history = false
 py_name = 'change_subvolume_sampling_to_history'
 args = [
     { name = 'monitor_name', type = 'str' },

@@ -107,6 +107,7 @@ args = [
 
 [[methods]]
 name = 'Start'
+record_history = false
 
 [[methods]]
 name = 'UseDistributedComputing'

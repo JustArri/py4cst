@@ -1,4 +1,5 @@
 object = 'Transform'
+save_history = true
 
 [[enums]]
 name = 'What'

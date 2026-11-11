@@ -522,6 +522,7 @@ args = [
 
 [[methods]]
 name = 'AddTabulatedSurfaceImpedanceFittingValue'
+cache = true
 args = [
     { name = 'frequency', type = 'float' },
     { name = 'impedance', type = 'complex' },
@@ -530,6 +531,7 @@ args = [
 
 [[methods]]
 name = 'AddTabulatedSurfaceImpedanceValue'
+cache = true
 args = [
     { name = 'frequency', type = 'float' },
     { name = 'impedance', type = 'complex' },
@@ -577,6 +579,7 @@ args = [
 
 [[methods]]
 name = 'ResetTabulatedCompactModelList'
+cache = true
 
 [[methods]]
 name = 'SetTabulatedCompactModelImpedance'
@@ -595,6 +598,7 @@ args = [
 
 [[methods]]
 name = 'AddTabulatedCompactModelItem'
+cache = true
 args = [
     { name = 'frequency', type = 'float' },
     { name = 's11', type = 'complex' },
@@ -606,6 +610,7 @@ args = [
 
 [[methods]]
 name = 'AddSymmTabulatedCompactModelItem'
+cache = true
 args = [
     { name = 'frequency', type = 'float' },
     { name = 's11', type = 'complex' },
@@ -623,6 +628,7 @@ args = [
 
 [[methods]]
 name = 'AddAnisoTabulatedCompactModelItem'
+cache = true
 args = [
     { name = 'entry_block', type = 'EntryBlock' },
     { name = 'frequency', type = 'float' },
@@ -635,6 +641,7 @@ args = [
 
 [[methods]]
 name = 'AddAnisoSymmTabulatedCompactModelItem'
+cache = true
 args = [
     { name = 'entry_block', type = 'EntryBlock' },
     { name = 'frequency', type = 'float' },
@@ -732,6 +739,7 @@ args = [
 
 [[methods]]
 name = 'ResetJEList'
+cache = true
 
 [[methods]]
 name = 'ResetElTimeDepCond'
@@ -886,6 +894,7 @@ args = [
 
 [[methods]]
 name = 'ResetMagTimeDepCond'
+cache = true
 py_name = 'reset_mag_time_dependent_conductivity_curve'
 
 [[methods]]

@@ -76,6 +76,7 @@ values = ['All', 'Automatic', 'None']
 
 [[methods]]
 name = 'Start'
+record_history = false
 
 [[methods]]
 name = 'StartActiveSolver'

@@ -55,6 +55,7 @@ args = [
 
 [[methods]]
 name = 'StartCurveNameIteration'
+record_history = false
 args = [{ name = 'it_type', type = 'IterationType' }]
 
 [[methods]]

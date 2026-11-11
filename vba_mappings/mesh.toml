@@ -58,6 +58,7 @@ args = [{ name = 'creator', type = 'str' }]
 
 [[methods]]
 name = 'ConnectivityCheck'
+record_history = false
 py_name = 'set_connectivity_check'
 args = [{ name = 'flag', type = 'bool', default = true }]
 
@@ -224,15 +225,19 @@ args = [{ name = 'flag', type = 'bool', default = true }]
 
 [[methods]]
 name = 'Update'
+record_history = false
 
 [[methods]]
 name = 'ForceUpdate'
+record_history = false
 
 [[methods]]
 name = 'CalculateMatrices'
+record_history = false
 
 [[methods]]
 name = 'ViewMeshMode'
+record_history = false
 py_name = 'set_view_mesh_mode'
 args = [{ name = 'flag', type = 'bool', default = true }]
 

@@ -90,42 +90,49 @@ name = 'AlignWCSWithGlobalCoordinates'
 
 [[methods]]
 name = 'SetWorkplaneSize'
+record_history = false
 args = [
     { name = 'size', type = 'float' },
 ]
 
 [[methods]]
 name = 'SetWorkplaneRaster'
+record_history = false
 args = [
     { name = 'raster_size', type = 'float' },
 ]
 
 [[methods]]
 name = 'SetWorkplaneSnap'
+record_history = false
 args = [
     { name = 'flag', type = 'bool', default = true },
 ]
 
 [[methods]]
 name = 'SetWorkplaneAutoadjust'
+record_history = false
 args = [
     { name = 'flag', type = 'bool', default = true },
 ]
 
 [[methods]]
 name = 'SetWorkplaneSnapAutoadjust'
+record_history = false
 args = [
     { name = 'flag', type = 'bool', default = true },
 ]
 
 [[methods]]
 name = 'SetWorkplaneAutosnapFactor'
+record_history = false
 args = [
     { name = 'factor', type = 'float' },
 ]
 
 [[methods]]
 name = 'SetWorkplaneSnapRaster'
+record_history = false
 args = [
     { name = 'raster_size', type = 'float' },
 ]

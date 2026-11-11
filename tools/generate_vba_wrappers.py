@@ -264,6 +264,10 @@ class WrapperGen:
         if return_val_desc is not None:
             return_val_desc = check_string(f"{id}.return_value_description", return_val_desc)
 
+        record_history = check_bool(f"{id}.record_history", method.get("record_history", True))
+        if not record_history and (method.get("cache", False) or method.get("flush_cache") is not None):
+            raise ValueError(f"incompatible parameters: [{id}]: direct methods cannot cache or flush")
+
         cache = method.get("cache", False)
         cache = check_bool(f"{id}.cache", cache)
         if cache and ret_dtype != "None":
@@ -556,7 +560,7 @@ class WrapperGen:
                 method_dtype = "str" if ret_dtype_is_enum else ret_dtype
                 hl_method = f"query_method_{method_dtype}"
             else:
-                hl_method = "cache_method" if cache else "record_method"
+                hl_method = "cache_method" if cache else ("record_method" if record_history else "invoke_method")
 
             if ret_mapping is not None:
                 body_lines.append(indent(f"__retval__ = {self_expr}.{hl_method}({vba_call_args_code})"))
@@ -727,13 +731,9 @@ def get_param_class_name(data: Mapping[str, Any]) -> Optional[str]:
     return value
 
 
-def get_param_save_history(data: Mapping[str, Any]) -> Optional[bool]:
-    name = "save_history"
-    value = data.get(name)
-    if value is None:
-        return None
-    value = check_bool(name, value)
-    return value
+def get_param_save_history(data: Mapping[str, Any]) -> bool:
+    # Match VBAObjWrapper's default; only an explicit false opts out.
+    return check_bool("save_history", data.get("save_history", True))
 
 
 def get_param_imports(data: Mapping[str, Any]) -> Optional[str]:

@@ -31,66 +31,86 @@ return_type = 'str'
 
 [[methods]]
 name = 'HideComponent'
+record_history = false
 py_name = 'hide'
 args = [{ name = 'component_name', type = 'str' }]
 
 [[methods]]
 name = 'ShowComponent'
+record_history = false
 py_name = 'show'
 args = [{ name = 'component_name', type = 'str' }]
 
 [[methods]]
 name = 'Hide'
+record_history = false
 py_name = 'hide_selected'
 
 [[methods]]
 name = 'Show'
+record_history = false
 py_name = 'show_selected'
 
 [[methods]]
 name = 'HideUnselected'
+record_history = false
 
 [[methods]]
 name = 'ShowUnselected'
+record_history = false
 
 [[methods]]
 name = 'HideAll'
+record_history = false
 
 [[methods]]
 name = 'ShowAll'
+record_history = false
 
 [[methods]]
 name = 'HideAllPorts'
+record_history = false
 
 [[methods]]
 name = 'ShowAllPorts'
+record_history = false
 
 [[methods]]
 name = 'HideAllFieldSources'
+record_history = false
 
 [[methods]]
 name = 'ShowAllFieldSources'
+record_history = false
 
 [[methods]]
 name = 'HideAllLumpedElements'
+record_history = false
 
 [[methods]]
 name = 'ShowAllLumpedElements'
+record_history = false
 
 [[methods]]
 name = 'HideAllWires'
+record_history = false
 
 [[methods]]
 name = 'ShowAllWires'
+record_history = false
 
 [[methods]]
 name = 'HideAllDielectric'
+record_history = false
 
 [[methods]]
 name = 'ShowAllDielectric'
+record_history = false
 
 [[methods]]
 name = 'HideAllMetals'
+record_history = false
 
 [[methods]]
 name = 'ShowAllMetals'
+record_history = false

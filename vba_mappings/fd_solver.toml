@@ -84,6 +84,7 @@ name = 'Reset'
 
 [[methods]]
 name = 'start'
+record_history = false
 
 [[methods]]
 name = 'AcceleratedRestart'
@@ -697,12 +698,14 @@ vba_call_args = [
 
 [[methods]]
 name = 'UpdateInterpolationSettings'
+record_history = false
 args = [
     { name = 'navigation_tree_path', type = 'str' },
 ]
 
 [[methods]]
 name = 'ExportMORSolution'
+record_history = false
 args = [
     { name = 'frequency', type = 'float' },
 ]
